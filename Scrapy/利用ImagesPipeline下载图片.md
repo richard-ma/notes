@@ -19,3 +19,6 @@
 	* 实现item_completed(self, results, item, info)
 		* results是一个表示图片是否下载成功的标志
 		* 此函数处理下载成功的后续工作
+
+## 参考文献
+* [https://www.jianshu.com/p/c12d2ac7d55f](https://www.jianshu.com/p/c12d2ac7d55f)
