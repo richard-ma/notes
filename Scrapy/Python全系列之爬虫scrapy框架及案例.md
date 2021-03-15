@@ -20,7 +20,7 @@
 * 设置`USER_AGENT`来欺骗服务器识别
 
 ## logging
-* settings中设置`LOG\_LEVEL`和`LOG\_FILE`
+* settings中设置`LOG_LEVEL`和`LOG_FILE`
 * import logging
 * logging.warning(), logging.error()等等输出log信息
 
