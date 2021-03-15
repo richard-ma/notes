@@ -16,8 +16,8 @@
 	* 实现process_item(self, item, spider)方法,处理爬取到的数据
     
 ## settings
-	* 关闭robots协议
-	* 设置`USER_AGENT`来欺骗服务器识别
+* 关闭robots协议
+* 设置`USER_AGENT`来欺骗服务器识别
 
 ## logging
 * settings中设置`LOG\_LEVEL`和`LOG\_FILE`
