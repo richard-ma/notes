@@ -69,10 +69,10 @@
 	* `db.[collection-name].find().skip(2)`
 	* `db.[collection-name].find().skip(2).limit(2)` 先skip速度快,用于翻页
 * $where 可以直接用js语句
-'''
+`
 db.[collection-name].find({
 	$where: function(){
 		return this.age <= 18
 	}
 })
-'''
+`
