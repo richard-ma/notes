@@ -115,7 +115,10 @@ db.[collection-name].find({
 * Group by null 不指定分组,即所有文档为一组
 
 ## 索引
-* `db.[collection-name].ensureIndex({name: 1})` 对name创建索引
+* `db.[collection-name].ensureIndex({name: 1}, {"unique": true})` 对name创建索引
+	* unique 值唯一,如有重复插入则报错
+* `db.[collection-name].getIndexes()` 显示所有索引
+* `db.[collection-name].dropIndex({name: 1})` 删除索引
 
 ## 例子代码
 ```
@@ -157,6 +160,16 @@ db.student.aggregate(
 	{$sort: {count: -1}}
 )
 
+# 索引
+for(i=0; i<100000; i++){
+	db.t255.insert({name: 'test'+i, age:i})
+}
+
+db.t255.find({name:"test10000"})
+
+db.t255.find({name:"test10000"}).explain("executionStats")
+
+db.t255.ensureIndex({"name": 1})
 
 ```
 
