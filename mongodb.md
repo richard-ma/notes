@@ -102,6 +102,7 @@ db.[collection-name].find({
 	* $limit 限制返回数
 	* $skip 跳过指定数量文档
 	* $unwind 数组类型字段进行拆分
+		* preserveNullAndEmptyArrays: true对于空数组不会删除
 * 表达式
 	* $sum 求和 `$sum: 1`可以用来计数
 	* $avg 平均值
@@ -112,6 +113,9 @@ db.[collection-name].find({
 	* $last 最后一个文档数据
 
 * Group by null 不指定分组,即所有文档为一组
+
+## 索引
+* `db.[collection-name].ensureIndex({name: 1})` 对name创建索引
 
 ## 例子代码
 ```
@@ -144,6 +148,13 @@ db.student.aggregate(
 db.student.aggregate(
 	{$group: {_id: "$gender", count:{$sum: 1}}},
 	{$project: {_id:0, count:1}}
+)
+
+# 查询男女生人数和总人数并降序排列
+db.student.aggregate(
+	{$group: {_id: "$gender", count:{$sum: 1}}},
+	{$project: {_id:0, count:1}},
+	{$sort: {count: -1}}
 )
 
 
