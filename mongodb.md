@@ -76,3 +76,76 @@ db.[collection-name].find({
 	}
 })
 `
+* 投影
+`db.[collection-name].find({age:{$gt:18}}, {_id:0, name:1})` 只显示name列
+
+* 排序
+`db.[collection-name].find().sort({age:-1, gender:-1})` 1为升序,-1为降序
+
+* 统计
+`db.[collection-name].find().count()`
+
+* 去重
+`db.[collection-name].distinct('去重字段', {条件})`
+
+## 数据备份和恢复
+* `mongodump -h [host] -d [db-name] -o [output-dir]` 备份数据
+* `mongorestore -h [host] -d [db-name] --dir [data-path]` 恢复数据
+
+## 聚合功能
+* `db.[collection-name].aggregate({管道:{表达式}})`
+* 聚合功能
+	* $group 分组
+	* $match 过滤数据
+	* $project 修改输入文档的结构, 重命名 增加删除字段(类似影射) 创建计算结果
+	* $sort 排序
+	* $limit 限制返回数
+	* $skip 跳过指定数量文档
+	* $unwind 数组类型字段进行拆分
+* 表达式
+	* $sum 求和 `$sum: 1`可以用来计数
+	* $avg 平均值
+	* $min 最小值
+	* $max 最大值
+	* $push 插入数组
+	* $first 第一个文档数据
+	* $last 最后一个文档数据
+
+* Group by null 不指定分组,即所有文档为一组
+
+## 例子代码
+```
+# 按照gender进行分组
+db.student.aggregate({
+	$group: {_id: "$gender", count:{$sum: 1}}
+})
+
+# 按照gender进行分组, 并计数获取每组平均年龄
+db.student.aggregate({
+	$group: {_id: "$gender", count:{$sum: 1}, avg_age:{$avg: "$age"}}
+})
+
+# 按照hometown进行分组,获取不同分组的平均年龄
+db.student.aggregate({
+	$group: {_id: "$hometown", avg_age:{$avg: "$age"}}
+})
+
+# group by null
+db.student.aggregate({
+	$group: {_id: null, count:{$sum: 1}, avg_age:{$avg: "$age"}}
+})
+
+# 查询姓名和年龄
+db.student.aggregate(
+	{$project: {_id: 0, name:1, age:1}}
+)
+
+# 查询男女生人数和总人数
+db.student.aggregate(
+	{$group: {_id: "$gender", count:{$sum: 1}}},
+	{$project: {_id:0, count:1}}
+)
+
+
+```
+
