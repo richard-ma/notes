@@ -50,3 +50,4 @@ MONGODB_COLLECTION = "[collection-name]"
 ## 参考文献
 * [https://realpython.com/web-scraping-with-scrapy-and-mongodb/#store-the-data-in-mongodb](https://realpython.com/web-scraping-with-scrapy-and-mongodb/#store-the-data-in-mongodb)
 * [https://stackoverflow.com/questions/14075941/how-to-access-scrapy-settings-from-item-pipeline](https://stackoverflow.com/questions/14075941/how-to-access-scrapy-settings-from-item-pipeline)
+* [https://docs.scrapy.org/en/latest/topics/item-pipeline.html#write-items-to-mongodb](https://docs.scrapy.org/en/latest/topics/item-pipeline.html#write-items-to-mongodb)
