@@ -46,3 +46,7 @@ MONGODB_COLLECTION = "[collection-name]"
         #         level=log.DEBUG, spider=spider)
         return item
 ```
+
+## 参考文献
+* [https://realpython.com/web-scraping-with-scrapy-and-mongodb/#store-the-data-in-mongodb](https://realpython.com/web-scraping-with-scrapy-and-mongodb/#store-the-data-in-mongodb)
+* [https://stackoverflow.com/questions/14075941/how-to-access-scrapy-settings-from-item-pipeline](https://stackoverflow.com/questions/14075941/how-to-access-scrapy-settings-from-item-pipeline)
